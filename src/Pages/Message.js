@@ -29,6 +29,9 @@ const Message = () => {
   };
   return (
   <div>
+      <div >
+          <text>{msg.content}</text>
+      </div>
       {msg}
   </div>
   );
