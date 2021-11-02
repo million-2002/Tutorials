@@ -16,11 +16,14 @@ const Home = () => {
       password: pwd,
     };
     console.log(data);
-    fetch("",
-    Headers:{
-      
-    }
-    )
+    fetch("", {
+      mode: "cors",
+      method: "POST",
+      headers: {
+        "Content-type": "application:/x-www-form-urlencoded:charset=UTF-8",
+      },
+      body: JSON.stringify(data)
+    })
       .then((response) => response.json())
       .then((json) => console.log(json))
       .catch((err) => console.log("Request Failed", err));
@@ -31,10 +34,12 @@ const Home = () => {
         <div className={"mainContainerContent"}>
           <input
             className={"inputLogin"}
+            placeholder="USERNAME"
             onChange={(value) => updateUsername(value)}
           />
           <input
             className={"inputLogin"}
+            placeholder="PASSWORD"
             onChange={(value) => updatePwd(value)}
           />
           <button className={"inputLoginBtn"} onClick={() => loginNow()}>
