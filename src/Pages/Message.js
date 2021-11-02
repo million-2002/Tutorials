@@ -1,11 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 
 const Message = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  const [msg, setMsg] = useState({});
+  const [initial, setInitia] = useState(true);
+  useEffect(() => {
+    if (initial) {
+      Initial();
+    }
+  });
+  const Initial = () => {
+    setInitia(false);
+    getData();
+  };
+  const getData = () => {
+    fetch("", {
+      mode: "cors",
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        if(json.code === 0){
+            return;
+        }
+        throw new Error('network offline!');
+    })
+      .catch((err) => console.log("Request Failed", err));
+  };
+  return <div></div>;
+};
 
-export default Message
+export default Message;

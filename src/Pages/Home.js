@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./home.css";
-
+import {useHistory} from 'react-router-dom';
 const Home = () => {
+  let history = useHistory();
   const [username, setUsername] = useState("");
   const [pwd, setPwd] = useState("");
   const updateUsername = (e) => {
@@ -25,7 +26,14 @@ const Home = () => {
       body: JSON.stringify(data)
     })
       .then((response) => response.json())
-      .then((json) => console.log(json))
+      .then((json) => {
+        console.log(json);
+        if(json.code === 0){
+          history.push('/message');
+          return;
+        }
+        history.push('/err');
+      })
       .catch((err) => console.log("Request Failed", err));
   };
   return (
