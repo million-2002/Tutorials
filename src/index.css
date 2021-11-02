@@ -8,6 +8,9 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
 }
 
 code {

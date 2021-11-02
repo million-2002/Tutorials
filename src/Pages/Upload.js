@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Upload, message, Button } from "antd";
 // import { InboxOutlined } from "@ant-design/icons";
-import {UploadOutlined} from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
 
 const UploadPage = () => {
   const [uploading, setUploading] = useState(false);
@@ -32,16 +32,14 @@ const UploadPage = () => {
         console.log(err);
       });
   };
-  const props = {
-    onRemove: () => {
-      setFileList([]);
-    },
-    beforeUpload: (file) => {
-      setFileList(file);
-      return false;
-    },
-    fileList,
+  const changeFileList = (e) => {
+    console.log(e);
   };
+  const uploadStatus = (e) => {
+    setFileList(e);
+    return false;
+  };
+
   return (
     <div
       style={{
@@ -49,38 +47,70 @@ const UploadPage = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        minWidth:'60vw',
-        height:'60vh'
+        Width: "60vw",
+        Height: "40vh",
       }}
     >
       <div>
         <input
+          className={"inputLogin"}
           onChange={(value) => setName(value.target.value)}
           placeholder="TRUE NAME"
         />
       </div>
       <div>
         <input
+          className={"inputLogin"}
           onChange={(value) => {
             setMsg(value.target.value);
           }}
-          placeholder="Msgs YOU WANT TO SAY"
+          placeholder="MSGS YOU WANT TO SAY"
         />
       </div>
-      <div>
-        <Upload {...props}>
-          <Button icon={<UploadOutlined />}>Select File</Button>
-        </Upload>
-        <Button
-          type="primary"
-          onClick={()=>uploadData()}
-          disabled={fileList.length === 0}
-          loading={uploading}
-          style={{ marginTop: 16 }}
+      <div style={{ width: "50%" }}>
+        <h2 style={{}}> Upload pic</h2>
+        <div
+          style={{
+            width: "100%",
+            justifyContent: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          {uploading ? "Uploading" : "Start Upload"}
-        </Button>
+          <Upload
+            maxCount={1}
+            fileList={fileList}
+            onRemove={() => setFileList([])}
+            beforeUpload={(e) => uploadStatus(e)}
+            onChange={(e) => changeFileList(e)}
+          >
+            <Button icon={<UploadOutlined />}>Select File</Button>
+          </Upload>
+          <Button
+            type="primary"
+            onClick={() => uploadData()}
+            disabled={fileList.length === 0}
+            style={{ marginTop: "2vh" }}
+            loading={uploading}
+          >
+            {uploading ? "Uploading" : "Start Upload"}
+          </Button>
+        </div>
       </div>
+      <button
+        style={{
+          cursor: "pointer",
+          marginTop: "5vh",
+          borderRadius: "5px",
+          border: "1px solid #fff",
+          width: "10rem",
+          height: "2rem",
+        }}
+        disabled={fileList.length === 0}
+      >
+        CONFIRM
+      </button>
     </div>
   );
 };
