@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Upload, message, Button } from "antd";
 // import { InboxOutlined } from "@ant-design/icons";
 import {UploadOutlined} from "@ant-design/icons";
-const { Dragger } = Upload;
 
 const UploadPage = () => {
   const [uploading, setUploading] = useState(false);
@@ -26,7 +25,7 @@ const UploadPage = () => {
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
-        if (json.code === 0) message.success("Upload success!");
+        if (json.code && json.code === 0) message.success("Upload success!");
         else message.error("Upload failed!");
       })
       .catch((err) => {

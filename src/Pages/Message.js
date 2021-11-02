@@ -19,14 +19,19 @@ const Message = () => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        if(json.code === 0){
+        if(json.code && json.code === 0){
+            setMsg(json.data);
             return;
         }
         throw new Error('network offline!');
     })
       .catch((err) => console.log("Request Failed", err));
   };
-  return <div></div>;
+  return (
+  <div>
+      {msg}
+  </div>
+  );
 };
 
 export default Message;

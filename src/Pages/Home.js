@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./home.css";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 const Home = () => {
   let history = useHistory();
   const [username, setUsername] = useState("");
@@ -23,16 +23,16 @@ const Home = () => {
       headers: {
         "Content-type": "application:/x-www-form-urlencoded:charset=UTF-8",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        if(json.code === 0){
-          history.push('/message');
+        if (json.code && json.code === 0) {
+          history.push("/message");
           return;
         }
-        history.push('/err');
+        history.push("/err");
       })
       .catch((err) => console.log("Request Failed", err));
   };
