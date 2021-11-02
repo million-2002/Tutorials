@@ -6,6 +6,7 @@ body {
   background-color: lightblue;
   background-image: url("./assets/mainBack.jpg");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 }
 

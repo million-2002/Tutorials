@@ -17,6 +17,9 @@ const Home = () => {
     };
     console.log(data);
     fetch("",
+    Headers:{
+      
+    }
     )
       .then((response) => response.json())
       .then((json) => console.log(json))
